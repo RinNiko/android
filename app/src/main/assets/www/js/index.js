@@ -59,8 +59,8 @@ function myDeviceReadyFunction(){
     //document.getElementById("convert").addEventListener("click",convertclick);
 
     $("#addemp").click(addEmployeeClick);
-    $("#viewemp").click(viewEmployeeClick);
-    $("#searchemp").click(searchEmployeeClick);
+    $("#viewlistrestaurant").click(viewRateRestaurantClick);
+
 
     //window.addEventListener('load',onBodyLoad);
     //document.addEventListener("online",isOnline,false);
@@ -69,21 +69,13 @@ function myDeviceReadyFunction(){
     //myDB.transaction(mySQL,success,error);
 }
 
-function searchEmployeeClick(){
-    var searchInput = $("#searchInput").val();
-    tx.executeSql('SELECT * from Employee WHERE Employee MATCH searchInput',[],querySuccess,errorDB);
-    $.mobile.navigate("#pageViewSearchEmployee");
-
-}
-
-function viewEmployeeClick(){
-    $.mobile.navigate("#pageViewEmployee");
+function viewRateRestaurantClick(){
+    $.mobile.navigate("#pageViewRestaurant");
     //This is where we exec SELECT statement
     myDB = window.sqlitePlugin.openDatabase({
                             name: "MyDatabase",
                             location: "default",});
     myDB.transaction(queryDB,errorDB);
-
 }
 function queryDB(tx){
     tx.executeSql('SELECT * from Employee',[],querySuccess,errorDB);
@@ -101,6 +93,7 @@ function querySuccess(tx, results){
 function errorDB(err){
     alert("Select query error for Employee table" + err);
 }
+
 
 function addEmployeeClick(){
     //navigator.notification.alert("You are about to convert",functionAfterAlertClosed,"Title");
@@ -145,3 +138,12 @@ function functionAfterAlertClosed(){
     alert("You have just closed the alert dialog");
 }
 
+$('#details-input-form').submit(function() {
+    if ($('input:checkbox', this).is(':checked') &&
+        $('input:radio', this).is(':checked')) {
+        // everything's fine...
+    } else {
+        alert('Please select all fields!');
+        return false;
+    }
+});

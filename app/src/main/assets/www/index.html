@@ -18,77 +18,180 @@
     under the License.
 -->
 <html>
-    <head>
-        <meta charset="utf-8">
-        <!--
-        Customize this policy to fit your own app's needs. For more guidance, see:
-            https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
-        Some notes:
-            * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
-            * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
-            * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
-                * Enable inline JS: add 'unsafe-inline' to default-src
-        -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
-        <meta name="color-scheme" content="light dark">
-        <link rel="stylesheet" href="css/index.css">
+<head>
+    <meta charset="utf-8">
+    <!--
+    Customize this policy to fit your own app's needs. For more guidance, see:
+        https://github.com/apache/cordova-plugin-whitelist/blob/master/README.md#content-security-policy
+    Some notes:
+        * gap: is required only on iOS (when using UIWebView) and is needed for JS->native communication
+        * https://ssl.gstatic.com is required only on Android and is needed for TalkBack to function properly
+        * Disables use of inline scripts in order to mitigate risk of XSS vulnerabilities. To change this:
+            * Enable inline JS: add 'unsafe-inline' to default-src
+    -->
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="initial-scale=1, width=device-width, viewport-fit=cover">
+    <meta name="color-scheme" content="light dark">
+    <link rel="stylesheet" href="css/index.css">
+    <style>
+            .error {
+            color:red;
+        }
+        </style>
 
-        <link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
-        <script src="jquery.mobile-1.4.5/jquery-2.2.4.min.js"></script>
-        <script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
-        <title>Conversion App</title>
-    </head>
-    <body>
-        <div data-role="page">
-            <div data-role="header">
-                <h1>Employee App</h1>
+    <link rel="stylesheet" href="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.css" />
+    <script src="jquery.mobile-1.4.5/jquery-2.2.4.min.js"></script>
+    <script src="jquery.mobile-1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <title>Conversion App</title>
+</head>
+<body>
+<div data-role="page" id="pageRateRestaurant">
+    <div data-role="header">
+        <p style="text-align: center;">Restaurant Rating Application</p>
+    </div>
+    <form id="details-input-form">
+        <div data-role="content">
+            <!--<label>ID</label>
+            <input type="text" id="empid">
+
+            <label>Firstname</label>
+            <input type="text" id="firstname">
+
+            <label>Lastname</label>
+            <input type="text" id="lastname">
+
+
+            <input type="button" value="Add Employee" id="addemp">
+            <input type="button" value="View Employee" id="viewemp">-->
+
+
+            <!--                    <label>Restaurant Name</label>-->
+            <!--                    <input type="text" id="name" placeholder="Enter your name" required>-->
+
+            <!--                    <label>Restaurant type:</label>-->
+            <!--                    <div style="display: inline-flex">-->
+            <!--                        <input type="radio" id="grill" name="restaurant-type">-->
+            <!--                        <label for="grill">Grill</label>-->
+            <!--                    </div>-->
+            <!--                    <div style="display: inline-flex">-->
+            <!--                        <input type="radio" id="fast-food" name="restaurant-type">-->
+            <!--                        <label for="fast-food">Fast food</label>-->
+            <!--                    </div>-->
+            <!--                    <div style="display: inline-flex">-->
+            <!--                        <input type="radio" id="sea-food" name="restaurant-type">-->
+            <!--                        <label for="sea-food">Sea food</label>-->
+            <!--                    </div>-->
+            <!--                    <div style="display: inline-flex">-->
+            <!--                        <input type="radio" id="vegetables" name="restaurant-type">-->
+            <!--                        <label for="vegetables">Vegetables</label>-->
+            <!--                    </div><br>-->
+
+            <form>
+                <div class="ui-field-contain">
+                    <label for="select-restaurant-type">Restaurant type:</label>
+                    <select name="select-restaurant-type" id="select-restaurant-type">
+                        <option value="grill">Grill</option>
+                        <option value="fast-food">Fast food</option>
+                        <option value="sea-food" selected="selected">Sea food</option>
+                        <option value="vegetables">Vegetables</option>
+                    </select>
+                </div>
+            </form>
+
+            <label>Date and time of the visit</label>
+            <input type="date" required>
+
+            <label>Average meal price per person</label>
+            <input type="number" id="averageMealPrice" placeholder="Enter average meal price" required>
+
+            <label>Service rating:</label>
+            <div style="display: inline-flex">
+                <input type="radio" id="service-need-to-improve" name="service-rating">
+                <label for="service-need-to-improve">Need to improve</label>
             </div>
-            <div data-role="content">
-                <form>
-                    <input id="searchInput" data-type="search" >
-                </form>
-                <label>ID</label>
-                <input type="text" id="empid">
-
-                <label>Firstname</label>
-                <input type="text" id="firstname">
-
-                <label>Lastname</label>
-                <input type="text" id="lastname">
-
-
-                <input type="button" value="Add Employee" id="addemp">
-                <input type="button" value="View Employee" id="viewemp">
-
-
+            <div style="display: inline-flex">
+                <input type="radio" id="service-okay" name="service-rating">
+                <label for="service-okay">OKAY</label>
             </div>
-            <div data-role="footer" data-position="fixed">
-
-
+            <div style="display: inline-flex">
+                <input type="radio" id="service-good" name="service-rating">
+                <label for="service-good">Good</label>
             </div>
+            <div style="display: inline-flex">
+                <input type="radio" id="service-excellent" name="service-rating">
+                <label for="service-excellent">Excellent</label>
+            </div><br>
+
+            <label>Cleanliness rating:</label>
+            <div style="display: inline-flex">
+                <input type="radio" id="cleanliness-need-to-improve" name="cleanliness-rating">
+                <label for="cleanliness-need-to-improve">Need to improve</label>
+            </div>
+            <div style="display: inline-flex">
+                <input type="radio" id="cleanliness-okay" name="cleanliness-rating">
+                <label for="cleanliness-okay">OKAY</label>
+            </div>
+            <div style="display: inline-flex">
+                <input type="radio" id="cleanliness-good" name="cleanliness-rating">
+                <label for="cleanliness-good">Good</label>
+            </div>
+            <div style="display: inline-flex">
+                <input type="radio" id="cleanliness-excellent" name="cleanliness-rating">
+                <label for="cleanliness-excellent">Excellent</label>
+            </div><br>
+
+            <label>Food quality rating:</label>
+            <div style="display: inline-flex">
+                <input type="radio" id="food-need-to-improve" name="food-rating">
+                <label for="food-need-to-improve">Need to improve</label>
+            </div>
+            <div style="display: inline-flex">
+                <input type="radio" id="food-okay" name="food-rating">
+                <label for="food-okay">OKAY</label>
+            </div>
+            <div style="display: inline-flex">
+                <input type="radio" id="food-good" name="food-rating">
+                <label for="food-good">Good</label>
+            </div>
+            <div style="display: inline-flex">
+                <input type="radio" id="food-excellent" name="food-rating">
+                <label for="food-excellent">Excellent</label>
+            </div><br>
+
+            <label>Notes</label>
+            <input type="text" id="note" placeholder="Note something here" required>
+
+            <label>Name of the reporter</label>
+            <input type="text" id="nameofreporter" placeholder="Enter name of reporter" required>
+
+
         </div>
+        <input type="submit" data-icon="check" value="Submit" id="submit"/>
+        <input type="button" data-icon="view" value="View List Restaurant" id="viewlistrestaurant"/>
+    </form>
+    <div data-role="footer" data-position="fixed">
+    </div>
+</div>
 
-        <!--This is the second page: View Employee-->
-        <div data-role="page" id="pageViewEmployee">
-            <div data-role="header">
-                <h1>View Employee</h1>
-            </div>
-            <div data-role="content">
-                <ul data-role="listview" data-inset="true" id="lvEmployee">
-                        <li><a href="#">Acura</a></li>
-                </ul>
+<!--This is the second page: View Employee-->
+<div data-role="page" id="pageViewRestaurant">
+    <div data-role="header">
+        <h1>View Rating Restaurant</h1>
+    </div>
+    <div data-role="content">
+        <ul data-role="listview" data-inset="true" id="lvEmployee">
+                <li><a href="#">Acura</a></li>
+        </ul>
+    </div>
+    <div data-role="footer" data-position="fixed">
 
-            </div>
-            <div data-role="footer" data-position="fixed">
 
+    </div>
+</div>
 
-            </div>
-        </div>
-
-        <script src="cordova.js"></script>
-        <script src="js/index.js"></script>
-    </body>
+<script src="cordova.js"></script>
+<script src="js/index.js"></script>
+</body>
 </html>
